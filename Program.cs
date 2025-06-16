@@ -1,43 +1,60 @@
-﻿using System;
-using STRUKDATFP_ManajemenPerpustakaan;
+﻿// See https://aka.ms/new-console-template for more information
+using System;
+using System.Collections.Generic;
 
-namespace PerpustakaanCLI
+namespace ManajemenPerpustakaan
 {
     class Program
     {
-        static AntrianPeminjaman antrian = new AntrianPeminjaman(); 
+        static HistoriBacaan histori = new HistoriBacaan();
 
-        static void Main(string[] args)
+        static void Main()
         {
-            while (true)
+            int pilihan;
+            do
             {
-                Console.WriteLine("\n=== Sistem Peminjaman Buku (Custom Queue - Linked List) ===");
-                Console.WriteLine("1. Tambah Antrian Peminjaman");
-                Console.WriteLine("2. Proses Antrian Peminjaman");
-                Console.WriteLine("3. Lihat Antrian Saat Ini");
-                Console.WriteLine("4. Keluar");
+                Console.Clear();
+                Console.WriteLine("=== MENU HISTORI PEMINJAMAN ===");
+                Console.WriteLine("1. Tambah Bacaan Baru");
+                Console.WriteLine("2. Tampilkan Semua Histori");
+                Console.WriteLine("3. Keluar");
                 Console.Write("Pilih menu: ");
-                string input = Console.ReadLine();
+                bool valid = int.TryParse(Console.ReadLine(), out pilihan);
+                Console.Clear();
 
-                switch (input)
+                if (!valid)
                 {
-                    case "1":
-                        antrian.TambahAntrian();
+                    Console.WriteLine("Input tidak valid. Tekan Enter untuk kembali.");
+                    Console.ReadLine();
+                    continue;
+                }
+
+                switch (pilihan)
+                {
+                    case 1:
+                        Console.Write("Masukkan judul bacaan: ");
+                        string judul = Console.ReadLine();
+                        histori.Push(judul);
+                        Console.WriteLine("Bacaan berhasil ditambahkan ke histori.");
                         break;
-                    case "2":
-                        antrian.ProsesAntrian(); 
+
+                    case 2:
+                        histori.TampilkanHistori();
                         break;
-                    case "3":
-                        antrian.LihatAntrian(); 
+
+                    case 3:
+                        Console.WriteLine("Keluar dari program. Sampai jumpa!");
                         break;
-                    case "4":
-                        Console.WriteLine("Keluar dari sistem manajemen perpustakaan.");
-                        return;
+
                     default:
-                        Console.WriteLine("Pilihan tidak valid.");
+                        Console.WriteLine("Menu tidak tersedia.");
                         break;
                 }
-            }
+
+                Console.WriteLine("\nTekan Enter untuk selesai.");
+                Console.ReadLine();
+
+            } while (pilihan != 3);
         }
     }
 }
