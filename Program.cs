@@ -32,9 +32,11 @@ namespace ManajemenPerpustakaan
                 switch (pilihan)
                 {
                     case 1:
+                        Console.Write("Masukkan nama pembaca: ");
+                        string nama = Console.ReadLine();
                         Console.Write("Masukkan judul bacaan: ");
                         string judul = Console.ReadLine();
-                        histori.Push(judul);
+                        histori.Push(nama, judul);
                         Console.WriteLine("Bacaan berhasil ditambahkan ke histori.");
                         break;
 
