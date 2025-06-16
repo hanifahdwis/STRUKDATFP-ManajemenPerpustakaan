@@ -8,12 +8,14 @@ namespace ManajemenPerpustakaan
 {
     public class Node
     {
-        public string bacaan;
+        public string nama;
+        public string judul;
         public Node next;
 
-        public Node(string bacaan)
+        public Node(string nama, string judul)
         {
-            this.bacaan = bacaan;
+            this.nama = nama;
+            this.judul = judul;
             this.next = null;
         }
     }
@@ -27,9 +29,9 @@ namespace ManajemenPerpustakaan
             this.top = null;
         }
 
-        public void Push(string item)
+        public void Push(string nama, string judul)
         {
-            Node newNode = new Node(item);
+            Node newNode = new Node(nama, judul);
             newNode.next = top;
             top = newNode;
         }
@@ -51,7 +53,7 @@ namespace ManajemenPerpustakaan
             Node current = top;
             while (current != null)
             {
-                Console.WriteLine("- " + current.bacaan);
+                Console.WriteLine("- " + current.nama + " membaca " + current.judul);
                 current = current.next;
             }
         }
